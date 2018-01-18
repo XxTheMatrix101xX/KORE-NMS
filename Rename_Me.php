@@ -86,6 +86,11 @@ highlight_string("<?php\n\n" . var_export($peers, true) . ";\n\n?>\n\n");
 		<style>
 			body {
 				background-color:#3686be;
+				border: 10px solid #3686be;
+				background-image: url("https://media.discordapp.net/attachments/387383860650049547/403656072713469962/Kback.png?width=750&height=750");
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-position: 100px;
 				color:#FFF;
 			}
 
