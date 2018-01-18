@@ -32,6 +32,7 @@ $kore = new Kore('user','pass','localhost','9932');
     //pull errors
     $error = $kore->error;
 
+
 //parsings
     //get the node's onion address
     $node = $network['localaddresses'][0]["address"];
@@ -75,19 +76,6 @@ highlight_string("<?php\n\n" . var_export($peerinfo, true) . ";\n\n?>\n\n");
 highlight_string("<?php\n\n" . var_export($peers, true) . ";\n\n?>\n\n");
 */
 
-// echo "<br><br>";
-// echo "Your node's current onion address:<b> $node </b>";
-// echo "<br><br>";
-// echo "Your node's current block:<b> $currentblock </b>";
-// echo "<br><br>";
-// echo "Your node's current connection count:<b> $connectioncount </b>";
-// echo "<br><br>";
-// echo "Network Staking Difficulty:<b> $stakedif </b>";
-// echo "<br><br>";
-
-//var_dump($info);
-// echo "<br><br>";
-//var_dump($network);
 ?>
 
 <!DOCTYPE html>
@@ -162,7 +150,8 @@ highlight_string("<?php\n\n" . var_export($peers, true) . ";\n\n?>\n\n");
 		<div style="clear:both;"></div>
 		<br><br>
 		<footer>
-		<p>hello!</p>
+			<p>KORE NMS by TheMatrix101<p>
+		</footer>
 	</body>
 </html>
 <!---
