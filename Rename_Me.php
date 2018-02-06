@@ -49,7 +49,7 @@ $kore = new Kore('user','pass','localhost','9932');
      	$peers[] = [
      		'address'	=>	$peer['addr'],
      		'count'		=>	$peer['synced_blocks'],
-		'color'		=>	($peer['synced_blocks'] < $currentblock)?'red':(($peer['synced_blocks'] > $currentblock)?'green':'white'),
+		'color'		=>	($peer['synced_blocks'] < $currentblock)?'tomato':(($peer['synced_blocks'] > $currentblock)?'green':'white'),
      	];
      }
 
@@ -85,9 +85,9 @@ highlight_string("<?php\n\n" . var_export($peers, true) . ";\n\n?>\n\n");
 	    <meta charset="utf-8">
 		<style>
 			body {
-				background-color:#3686be;
+				background-color: #3686be;
 				border: 10px solid #3686be;
-				background-image: url("https://media.discordapp.net/attachments/387383860650049547/403656072713469962/Kback.png?width=750&height=750");
+				background-image: url("https://media.discordapp.net/attachments/387383860650049547/403678864326262795/Kback30pacity.png?width=750&height=750");
 				background-repeat: no-repeat;
 				background-attachment: fixed;
 				background-position: 100px;
@@ -154,6 +154,41 @@ highlight_string("<?php\n\n" . var_export($peers, true) . ";\n\n?>\n\n");
 		</div>
 		<div style="clear:both;"></div>
 		<br><br>
+<?php
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://bittrex.com/api/v1.1/public/getticker?market=USDT-BTC",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache"
+    ),
+));
+$BTCresponse = curl_exec($curl);
+curl_close($curl);
+$BTCresponse = json_decode($BTCresponse, true);
+//echo 'USDT-BTC: '. $BTCresponse['result']['Bid']. "\n";
+
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://bittrex.com/api/v1.1/public/getticker?market=BTC-KORE",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache"
+    ),
+));
+$KOREresponse = curl_exec($curl);
+curl_close($curl);
+$KOREresponse = json_decode($KOREresponse, true);
+//echo 'BTC-KORE: '. $KOREresponse['result']['Bid']. "\n";
+echo "<span style='background-color:red'>1 KORE = $" . $KOREresponse['result']['Bid'] * $BTCresponse['result']['Bid'] . "</span>";
+
+?>
 		<footer>
 			<p>KORE NMS by TheMatrix101<p>
 		</footer>
